@@ -69,10 +69,6 @@ public class ByteSeeker {
         nextIdx += count;
     }
 
-    public void writeRaw(String path, int offset, int size) {
-        Fs.writeFileSync(path, baseArr.subarray(offset, offset + size));
-    }
-
     public TypedArray getRaw(int offset, int size) {
         return baseArr.subarray(offset, offset + size);
     }

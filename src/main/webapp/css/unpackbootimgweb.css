@@ -1,27 +1,108 @@
 body {
     background-color: #e6ede8;
+    font-family: Arial, sans-serif;
+    color: #1f2d22;
+    margin: 0;
+    padding: 24px;
+}
+
+.wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    background-color: #f7faf8;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+    margin-top: 0;
+    color: #2f6627;
+}
+
+h2 {
+    color: #2f6627;
+    margin-top: 28px;
+}
+
+.fileInput {
+    font-size: 16px;
+    padding: 8px;
+    border: 1px solid #b9c9bd;
+    border-radius: 6px;
+    background-color: #ffffff;
+}
+
+.status {
+    margin-top: 12px;
+    font-style: italic;
+    color: #5a6b60;
+}
+
+.info {
+    background-color: #1f2d22;
+    color: #eafaf0;
+    padding: 12px;
+    border-radius: 6px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+table.components {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+}
+
+table.components th,
+table.components td {
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid #d4e2d9;
+}
+
+table.components th {
+    background-color: #d8ece0;
+    color: #2f6627;
+}
+
+table.components tr:hover td {
+    background-color: #eef5f1;
+}
+
+.downloadButton {
+    background-color: #44c767;
+    border: 1px solid #18ab29;
+    border-radius: 6px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 6px 14px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #2f6627;
+}
+
+.downloadButton:hover {
+    background-color: #5cbf2a;
 }
 
 .myButton {
     position: absolute;
     top: 50%;
-    background-color:#44c767;
-    border-radius:28px;
-    border:1px solid #18ab29;
-    display:inline-block;
-    cursor:pointer;
-    color:#ffffff;
-    font-family:Arial;
-    font-size:17px;
-    padding:16px 31px;
-    text-decoration:none;
-    text-shadow:0px 1px 0px #2f6627;
+    background-color: #44c767;
+    border-radius: 28px;
+    border: 1px solid #18ab29;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 16px 31px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #2f6627;
 }
 
 .myButton:hover {
-    background-color:#5cbf2a;
-}
-
-.wrapper {
-    text-align: center;
+    background-color: #5cbf2a;
 }

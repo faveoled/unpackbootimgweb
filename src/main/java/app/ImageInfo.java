@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public final class ImageInfo {
 
-
     enum FieldType {
         INT, LONG
     }

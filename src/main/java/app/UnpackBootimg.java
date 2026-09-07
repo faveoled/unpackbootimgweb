@@ -1,5 +1,6 @@
 package app;
 
+import elemental2.core.TypedArray;
 import elemental2.core.Uint8Array;
 
 import java.util.ArrayList;
@@ -8,8 +9,6 @@ import java.util.List;
 public class UnpackBootimg {
 
     private static int BOOT_IMAGE_HEADER_V3_PAGESIZE = 4096;
-    private static int VENDOR_RAMDISK_NAME_SIZE = 32;
-    private static int VENDOR_RAMDISK_TABLE_ENTRY_BOARD_ID_SIZE = 16;
 
     // Helper method matching unpack_bootimg behavior if needed
     public static int getNumberOfPages(int imageSize, int pageSize) {
@@ -50,7 +49,7 @@ public class UnpackBootimg {
         );
     }
 
-    public static Info unpackBoot(Uint8Array bootImg) {
+    public static UnpackResult unpackBoot(Uint8Array bootImg) {
         Info info = new Info();
         ByteSeeker boot = new ByteSeeker(bootImg);
         info.bootMagic = boot.readS(8);
@@ -150,19 +149,12 @@ public class UnpackBootimg {
             imageInfoList.add(new ImageInfo(bootSignatureOffset, info.bootSignatureSize, "boot_signature"));
         }
 
-        // TODO make recursion
-        RuntimeUtil.mkDir(Info.OUT_BASE);
+        List<BootComponent> components = new ArrayList<>();
         for (ImageInfo ii : imageInfoList) {
-            extractImage(boot, ii);
+            TypedArray data = boot.getRaw((int) ii.offset(), ii.size());
+            components.add(new BootComponent(ii.name(), ii.offset(), ii.size(), data));
         }
 
-        return info;
-    }
-
-    private static void extractImage(ByteSeeker boot, ImageInfo ii) {
-        Console.log("Extracting " + ii.name() + ", offset: " + ii.offset() + ", size: " + ii.size());
-        String fileName = "boot/" + ii.name();
-        boot.writeRaw(fileName, (int) ii.offset(), ii.size());
-        Console.log("Extracted " + fileName + ", offset: " + ii.offset() + ", size: " + ii.size());
+        return new UnpackResult(info, components);
     }
 }
